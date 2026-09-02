@@ -3,18 +3,10 @@ import re
 import time
 import requests
 from bs4 import BeautifulSoup
+from utils import izlusci
 
 IN_FILE = "../podatki/raw_poti.csv"
 OUT_FILE = "../podatki/processed_poti.csv"
-
-def izlusci(vzorec, besedilo, samo_stevilke=False):
-    ujemanje = re.search(vzorec, besedilo)
-    if ujemanje:
-        vrednost = ujemanje.group(1).strip()
-        if samo_stevilke:
-            return re.sub(r"\D", "", vrednost)
-        return vrednost
-    return ""
 
 zbrane_poti = []
 
@@ -63,7 +55,6 @@ with open(IN_FILE, "r", encoding="utf-8") as f:
         })
 
         print(f"Zajeta pot ID {pot_id}")
-        time.sleep(1)
 
 if zbrane_poti:
     with open(OUT_FILE, "w", encoding="utf-8", newline="") as f:

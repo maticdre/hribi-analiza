@@ -3,19 +3,11 @@ import re
 import time
 import requests
 from bs4 import BeautifulSoup
+from utils import izlusci
 
 BASE_URL = "https://www.hribi.net/gora/x/1/{}"
 OUT_HRIBI = "../podatki/raw_hribi.csv"
 OUT_POTI = "../podatki/raw_poti.csv"
-
-def izlusci(vzorec, besedilo, samo_stevilke=False):
-    ujemanje = re.search(vzorec, besedilo)
-    if ujemanje:
-        vrednost = ujemanje.group(1).strip()
-        if samo_stevilke:
-            return re.sub(r"\D", "", vrednost)
-        return vrednost
-    return ""
 
 hribi = []
 poti = []
@@ -75,7 +67,6 @@ for gora_id in range(1, 10000):
         })
 
     print(f"ID {gora_id}: {ime_gore} (najdenih poti: {len(izbrane_poti)})")
-    time.sleep(1)
 
 with open(OUT_HRIBI, "w", encoding="utf-8", newline="") as f:
     writer = csv.DictWriter(f, fieldnames=hribi[0].keys(), delimiter=";")
