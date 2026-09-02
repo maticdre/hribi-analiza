@@ -5,12 +5,13 @@ IN_FILE = "../podatki/processed_poti.csv"
 OUT_FILE = "../podatki/poti.csv"
 
 def loci_ime_visino(besedilo):
-    ujemanje = re.search(r"^(.*?)(?:\s*\(([\d\s]+)\s*m\))?$", besedilo.strip())
-    if ujemanje:
-        ime = ujemanje.group(1).strip()
-        visina = ujemanje.group(2).replace(" ", "") if ujemanje.group(2) else ""
+    besedilo = besedilo.strip()
+    if "(" in besedilo and "m)" in besedilo:
+        delci = besedilo.split("(")
+        ime = delci[0].strip()
+        visina = delci[1].replace("m)", "").replace(" ", "").strip()
         return ime, visina
-    return besedilo.strip(), ""
+    return besedilo, ""
 
 def cas_v_minute(cas_str):
     h = re.search(r"(\d+)\s*h", cas_str)

@@ -18,4 +18,4 @@ Datoteko lahko odprete in si ogledate celotno analizo skupaj z grafičnimi prika
 Če želite sami ponovno zajeti najnovejše podatke s spletne strani in osvežiti analizo, poženite skripto:
 
 ```bash
-python main.js
+python main.py

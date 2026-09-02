@@ -28,7 +28,6 @@ with open(IN_FILE, "r", encoding="utf-8") as f:
         vrsta = nova_vrstica.get("vrsta", "")
         nova_vrstica["vrsta"] = ",".join(v.strip() for v in vrsta.split(",") if v.strip())
 
-        # Povezave pri analizi ne potrebujemo več
         nova_vrstica.pop("povezava", None)
 
         ocisceni_podatki.append(nova_vrstica)
