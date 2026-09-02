@@ -1,5 +1,4 @@
 import csv
-import re
 import time
 import requests
 from bs4 import BeautifulSoup
@@ -55,6 +54,7 @@ with open(IN_FILE, "r", encoding="utf-8") as f:
         })
 
         print(f"Zajeta pot ID {pot_id}")
+        time.sleep(0.1)
 
 if zbrane_poti:
     with open(OUT_FILE, "w", encoding="utf-8", newline="") as f:

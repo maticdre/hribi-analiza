@@ -1,9 +1,7 @@
 import csv
-import re
 import time
 import requests
 from bs4 import BeautifulSoup
-from utils import izlusci
 
 BASE_URL = "https://www.hribi.net/gora/x/1/{}"
 OUT_HRIBI = "../podatki/raw_hribi.csv"
@@ -67,6 +65,7 @@ for gora_id in range(1, 10000):
         })
 
     print(f"ID {gora_id}: {ime_gore} (najdenih poti: {len(izbrane_poti)})")
+    time.sleep(0.1)
 
 with open(OUT_HRIBI, "w", encoding="utf-8", newline="") as f:
     writer = csv.DictWriter(f, fieldnames=hribi[0].keys(), delimiter=";")
