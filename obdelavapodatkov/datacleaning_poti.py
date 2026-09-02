@@ -41,7 +41,8 @@ with open(IN_FILE, "r", encoding="utf-8") as f:
 
         # Določitev stopnje zahtevnosti
         zahtevnost_str = vrstica.get("zahtevnost", "").lower()
-        stopnja = 3 if "zelo zahtevna" in zahtevnost_str else 2 if "zahtevna" in zahtevnost_str else 1 if "lahka" in zahtevnost_str else ""
+        stopnja = (3 if "zelo zahtevna" in zahtevnost_str else
+            2 if "zahtevna" in zahtevnost_str else 1 if "lahka" in zahtevnost_str else "")
         oznacena = 1 if "označena" in zahtevnost_str and "neoznačena" not in zahtevnost_str else 0
 
         # Poenotenje zapisa dolžine v km

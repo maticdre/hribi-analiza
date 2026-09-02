@@ -15,7 +15,7 @@ with open(IN_FILE, "r", encoding="utf-8") as f:
         url = vrstica.get("povezava_poti")
         if not url:
             continue
-        
+
         pot_id = url.split("/")[-1]
 
         try:
@@ -42,14 +42,20 @@ with open(IN_FILE, "r", encoding="utf-8") as f:
             "dolzina_km": izlusci(r"Dolžina poti:\s*([^\n\r]+)", besedilo),
             "zahtevnost": izlusci(r"Zahtevnost:\s*([^\n\r]+)", besedilo),
             "ferata": izlusci(r"Ferata:\s*([^V\n\r]+)", besedilo),
-            "visinska_razlika_m": izlusci(r"Višinska razlika:\s*(\d+)\s*m", besedilo, samo_stevilke=True),
-            "visinska_razlika_po_poti_m": izlusci(r"Višinska razlika po poti:\s*(\d+)\s*m", besedilo, samo_stevilke=True),
+            "visinska_razlika_m": izlusci(
+                r"Višinska razlika:\s*(\d+)\s*m", besedilo, samo_stevilke=True
+            ),            
+            "visinska_razlika_po_poti_m": izlusci(
+                r"Višinska razlika po poti:\s*(\d+)\s*m", besedilo, samo_stevilke=True
+            ),
             "zemljevid": izlusci(r"Zemljevid:\s*([^\n\r]+)", besedilo),
             "oprema_poletje": izlusci(r"Priporočena oprema \(poletje\):\s*([^\n\r]+)", besedilo),
             "oprema_zima": izlusci(r"Priporočena oprema \(zima\):\s*([^\n\r]+)", besedilo),
             "ogledi": izlusci(r"Ogledov:\s*([\d\.]+)", besedilo, samo_stevilke=True),
             "stevilo_slik": izlusci(r"Število slik:\s*(\d+)", besedilo, samo_stevilke=True),
-            "stevilo_komentarjev": izlusci(r"Število komentarjev:\s*(\d+)", besedilo, samo_stevilke=True),
+            "stevilo_komentarjev": izlusci(
+                r"Število komentarjev:\s*(\d+)", besedilo, samo_stevilke=True
+            ),
             "povezava": url
         })
 
