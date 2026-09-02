@@ -2,6 +2,7 @@ import csv
 import time
 import requests
 from bs4 import BeautifulSoup
+from utils import izlusci
 
 BASE_URL = "https://www.hribi.net/gora/x/1/{}"
 OUT_HRIBI = "../podatki/raw_hribi.csv"
@@ -60,7 +61,7 @@ for gora_id in range(1, 10000):
 
     for a in izbrane_poti:
         poti.append({
-            "gora_id": gora_id, 
+            "gora_id": gora_id,
             "povezava_poti": f"https://www.hribi.net{a['href']}"
         })
 

@@ -1,5 +1,6 @@
 import re
 
+
 def izlusci(vzorec, besedilo, samo_stevilke=False):
     ujemanje = re.search(vzorec, besedilo)
     if ujemanje:

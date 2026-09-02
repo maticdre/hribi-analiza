@@ -10,7 +10,7 @@ with open(IN_FILE, "r", encoding="utf-8") as f:
     reader = csv.DictReader(f, delimiter=";")
     for vrstica in reader:
         nova_vrstica = vrstica.copy()
-        
+
         # Razbijemo koordinate in zamenjamo vejico s piko
         sirina_dolzina = nova_vrstica.pop("sirina_dolzina", "")
         koordinate = re.findall(r"([\d,.]+)", sirina_dolzina)

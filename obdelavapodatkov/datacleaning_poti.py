@@ -4,6 +4,7 @@ import re
 IN_FILE = "../podatki/processed_poti.csv"
 OUT_FILE = "../podatki/poti.csv"
 
+
 def loci_ime_visino(besedilo):
     besedilo = besedilo.strip()
     if "(" in besedilo and "m)" in besedilo:
@@ -13,24 +14,27 @@ def loci_ime_visino(besedilo):
         return ime, visina
     return besedilo, ""
 
+
 def cas_v_minute(cas_str):
     h = re.search(r"(\d+)\s*h", cas_str)
     m = re.search(r"(\d+)\s*min", cas_str)
-    
+
     ure = int(h.group(1)) if h else 0
     minute = int(m.group(1)) if m else 0
     skupaj = ure * 60 + minute
-    
+
     return str(skupaj) if skupaj > 0 else ""
 
+
 ocisceni_podatki = []
+
 
 with open(IN_FILE, "r", encoding="utf-8") as f:
     reader = csv.DictReader(f, delimiter=";")
     for vrstica in reader:
         izhodisce, izh_visina = loci_ime_visino(vrstica.get("izhodisce", ""))
         cilj, cilj_visina = loci_ime_visino(vrstica.get("cilj", ""))
-        
+
         koordinate = re.findall(r"([\d,.]+)", vrstica.get("sirina_dolzina", ""))
         sirina = koordinate[0].replace(",", ".") if len(koordinate) > 0 else ""
         dolzina = koordinate[1].replace(",", ".") if len(koordinate) > 1 else ""
